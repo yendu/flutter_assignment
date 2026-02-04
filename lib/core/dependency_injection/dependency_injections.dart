@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import 'package:isar_community/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../model/bookmark_model.dart';
+
 final locator = GetIt.instance;
 
 Future<void> setupDependencyInjection() async {
@@ -11,6 +13,7 @@ Future<void> setupDependencyInjection() async {
     if (Isar.instanceNames.isEmpty) {
       Isar isar = await Isar.open([
         PostModelSchema,
+        BookmarkModelSchema,
 
       ], directory: dir.path);
 

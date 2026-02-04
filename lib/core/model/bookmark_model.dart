@@ -1,9 +1,9 @@
 import 'package:isar_community/isar.dart';
 
-part 'post_model.g.dart';
+part 'bookmark_model.g.dart';
 
 @collection
-class PostModel {
+class BookmarkModel {
   Id id = Isar.autoIncrement;
 
   late int userId;
@@ -11,6 +11,5 @@ class PostModel {
   late String title;
   late String body;
   late String username;
-   bool? isBookmarked;
 
 }

@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:isar_community/isar.dart';
 
 import '../dependency_injection/dependency_injections.dart';
+import '../model/bookmark_model.dart';
 import '../state/app_state_provider.dart';
 
 class BaseRepository {
@@ -40,24 +41,46 @@ class BaseRepository {
   Future<void> fetchPosts(WidgetRef ref) async {
     try {
       ref.read(appStateProvider.notifier).updateLoading(true);
+      ref.read(appStateProvider.notifier).setErrorMessage(null);
+
+      final isar = await _getIsar();
+
+      // Get existing bookmarks before deleting posts
+      final existingPosts = await isar.postModels.where().findAll();
+      final existingBookmarks = <int, bool>{};
+      for (var existingPost in existingPosts) {
+        existingBookmarks[existingPost.postId] =
+            existingPost.isBookmarked ?? false;
+      }
+
       await deletePosts();
 
-      final res = await dio.get('/posts');
+      final postsRes = await dio.get('/posts');
+      final usersRes = await dio.get('/users');
 
-      if (res.statusCode == 200) {
+      if (postsRes.statusCode == 200 && usersRes.statusCode == 200) {
+        Map<int, String> userMap = {};
+        if (usersRes.data is List) {
+          for (var user in usersRes.data) {
+            userMap[user['id']] = user['name'] ?? 'Unknown';
+          }
+        }
+
         List<PostModel> postModels = [];
-        res.data.forEach((element) async {
-          String? username = await fetchUser(element['userId']);
+        for (var element in postsRes.data) {
+          final userId = element['userId'] as int;
+          final postId = element['id'] as int;
           postModels.add(
             PostModel()
-              ..userId = element['userId']
-              ..postId = element['id']
-              ..title = element['title']
-              ..body = element['body']
-              ..username = 'username' ?? 'Unknown',
+              ..userId = userId
+              ..postId = postId
+              ..title = element['title'] ?? ''
+              ..body = element['body'] ?? ''
+              ..username = userMap[userId] ?? 'Unknown'
+              ..isBookmarked = existingBookmarks[postId] ?? false,
           );
-        });
-        final isar = await _getIsar();
+        }
+
         await isar.writeTxn(() async {
           await isar.postModels.putAll(postModels);
         });
@@ -65,19 +88,10 @@ class BaseRepository {
     } catch (e) {
       ref
           .read(appStateProvider.notifier)
-          .setErrorMessage('Some error occurred');
+          .setErrorMessage('Some error occurred: ${e.toString()}');
     } finally {
       ref.read(appStateProvider.notifier).updateLoading(false);
     }
-  }
-
-  Future<String?> fetchUser(int userId) async {
-    final res = await dio.get('/users/$userId');
-
-    if (res.statusCode == 200) {
-      return res.data['name'];
-    }
-    return null;
   }
 
   Future<List<PostModel>> getPosts() async {
@@ -87,6 +101,62 @@ class BaseRepository {
     } catch (e) {
       print(e);
       return [];
+    }
+  } Stream<List<BookmarkModel>> getBookmarks() async* {
+
+      final isar = await _getIsar();
+      yield*  isar.bookmarkModels.where().watch(fireImmediately: true);
+
+  }
+
+  Stream<List<PostModel>> getQueriedPosts() async* {
+    final isar = await _getIsar();
+    // Query<User> usersWithA = isar.users.filter()
+    //     .nameStartsWith('A')
+    //     .build();
+    //
+    // Stream<List<User>> queryChanged = usersWithA.watch(fireImmediately: true);
+    // queryChanged.listen((users) {
+    //   print('Users with A are: $users');
+    // });
+    yield* isar.postModels.where().watch(fireImmediately: true);
+  }
+
+  Future<void> toggleBookmark(int postId, bool isBookmarked,bool isBookmarkPage) async {
+    try {
+      final isar = await _getIsar();
+      await isar.writeTxn(() async {
+        final post = await isar.postModels
+            .filter()
+            .postIdEqualTo(postId)
+            .findFirst();
+        if(isBookmarkPage){
+          await isar.bookmarkModels.filter().postIdEqualTo(postId).deleteAll();
+          post?.isBookmarked = false;
+          await isar.postModels.put(post!);
+        }else{
+          if (post != null) {
+            post.isBookmarked = isBookmarked;
+            await isar.postModels.put(post);
+          }
+          if (!isBookmarked) {
+            await isar.bookmarkModels.filter().postIdEqualTo(postId).deleteAll();
+          } else {
+            await isar.bookmarkModels.put(
+              BookmarkModel()
+                ..username = post!.username
+                ..body = post.body
+                ..title = post.title
+                ..postId = post.postId
+                ..userId = post.userId,
+            );
+          }
+        }
+
+
+      });
+    } catch (e) {
+      print('Error toggling bookmark: $e');
     }
   }
 }

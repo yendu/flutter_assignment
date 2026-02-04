@@ -17,6 +17,7 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   bool _hasTriggeredFetch = false;
 
+
   @override
   Widget build(BuildContext context) {
     return Consumer(
@@ -66,19 +67,19 @@ class _HomepageState extends State<Homepage> {
                               ),
                             )
                           : Expanded(
-                              child: FutureBuilder<List<PostModel>>(
-                                future: ref
-                                    .read(appStateProvider.notifier)
-                                    .getPosts(ref),
-                                builder: (context, asyncSnapshot) {
-                                  return ListView.builder(
-                                    itemBuilder: (context, index) =>
-                                        Post(post: asyncSnapshot.data![index]),
-                                    itemCount: asyncSnapshot.data?.length ?? 0,
-                                  );
-                                },
-                              ),
+                            child: StreamBuilder(
+                              stream: ref.read(appStateProvider.notifier).getQueriedPosts(),
+                              builder: (context, asyncSnapshot) {
+                                final posts = asyncSnapshot.data ?? [];
+                                return ListView.builder(
+                                  itemBuilder: (context, index) => Post(
+                                    post: posts[index],
+                                  ),
+                                  itemCount: posts.length,
+                                );
+                              }
                             ),
+                          )
                     ],
                   )
                 : BookmarkedPage(),

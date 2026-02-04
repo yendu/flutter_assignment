@@ -1,4 +1,5 @@
 import 'package:flutter_assignment/core/model/app_state_model.dart';
+import 'package:flutter_assignment/core/model/bookmark_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -34,5 +35,14 @@ class AppState extends _$AppState {
   }
   Future<List<PostModel>> getPosts(WidgetRef ref) async {
     return await BaseRepository.instance.getPosts();
+  }Stream<List<BookmarkModel>> getBookmarks() async* {
+    yield*  BaseRepository.instance.getBookmarks();
   }
+  Stream<List<PostModel>> getQueriedPosts() async* {
+    yield*  BaseRepository.instance.getQueriedPosts();
+  }
+  Future<void> toggleBookmark(WidgetRef ref, int postId, bool isBookmarked,bool isBookmarkPage) async {
+    await BaseRepository.instance.toggleBookmark(postId, isBookmarked,isBookmarkPage);
+  }
+
 }

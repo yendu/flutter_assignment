@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'post_model.dart';
+part of 'bookmark_model.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -9,47 +9,42 @@ part of 'post_model.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetPostModelCollection on Isar {
-  IsarCollection<PostModel> get postModels => this.collection();
+extension GetBookmarkModelCollection on Isar {
+  IsarCollection<BookmarkModel> get bookmarkModels => this.collection();
 }
 
-const PostModelSchema = CollectionSchema(
-  name: r'PostModel',
-  id: -5360925514997875557,
+const BookmarkModelSchema = CollectionSchema(
+  name: r'BookmarkModel',
+  id: -2869850630043177974,
   properties: {
     r'body': PropertySchema(id: 0, name: r'body', type: IsarType.string),
-    r'isBookmarked': PropertySchema(
-      id: 1,
-      name: r'isBookmarked',
-      type: IsarType.bool,
-    ),
-    r'postId': PropertySchema(id: 2, name: r'postId', type: IsarType.long),
-    r'title': PropertySchema(id: 3, name: r'title', type: IsarType.string),
-    r'userId': PropertySchema(id: 4, name: r'userId', type: IsarType.long),
+    r'postId': PropertySchema(id: 1, name: r'postId', type: IsarType.long),
+    r'title': PropertySchema(id: 2, name: r'title', type: IsarType.string),
+    r'userId': PropertySchema(id: 3, name: r'userId', type: IsarType.long),
     r'username': PropertySchema(
-      id: 5,
+      id: 4,
       name: r'username',
       type: IsarType.string,
     ),
   },
 
-  estimateSize: _postModelEstimateSize,
-  serialize: _postModelSerialize,
-  deserialize: _postModelDeserialize,
-  deserializeProp: _postModelDeserializeProp,
+  estimateSize: _bookmarkModelEstimateSize,
+  serialize: _bookmarkModelSerialize,
+  deserialize: _bookmarkModelDeserialize,
+  deserializeProp: _bookmarkModelDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {},
   embeddedSchemas: {},
 
-  getId: _postModelGetId,
-  getLinks: _postModelGetLinks,
-  attach: _postModelAttach,
+  getId: _bookmarkModelGetId,
+  getLinks: _bookmarkModelGetLinks,
+  attach: _bookmarkModelAttach,
   version: '3.3.0',
 );
 
-int _postModelEstimateSize(
-  PostModel object,
+int _bookmarkModelEstimateSize(
+  BookmarkModel object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -60,38 +55,36 @@ int _postModelEstimateSize(
   return bytesCount;
 }
 
-void _postModelSerialize(
-  PostModel object,
+void _bookmarkModelSerialize(
+  BookmarkModel object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeString(offsets[0], object.body);
-  writer.writeBool(offsets[1], object.isBookmarked);
-  writer.writeLong(offsets[2], object.postId);
-  writer.writeString(offsets[3], object.title);
-  writer.writeLong(offsets[4], object.userId);
-  writer.writeString(offsets[5], object.username);
+  writer.writeLong(offsets[1], object.postId);
+  writer.writeString(offsets[2], object.title);
+  writer.writeLong(offsets[3], object.userId);
+  writer.writeString(offsets[4], object.username);
 }
 
-PostModel _postModelDeserialize(
+BookmarkModel _bookmarkModelDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = PostModel();
+  final object = BookmarkModel();
   object.body = reader.readString(offsets[0]);
   object.id = id;
-  object.isBookmarked = reader.readBoolOrNull(offsets[1]);
-  object.postId = reader.readLong(offsets[2]);
-  object.title = reader.readString(offsets[3]);
-  object.userId = reader.readLong(offsets[4]);
-  object.username = reader.readString(offsets[5]);
+  object.postId = reader.readLong(offsets[1]);
+  object.title = reader.readString(offsets[2]);
+  object.userId = reader.readLong(offsets[3]);
+  object.username = reader.readString(offsets[4]);
   return object;
 }
 
-P _postModelDeserializeProp<P>(
+P _bookmarkModelDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -101,50 +94,56 @@ P _postModelDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readBoolOrNull(offset)) as P;
+      return (reader.readLong(offset)) as P;
     case 2:
-      return (reader.readLong(offset)) as P;
-    case 3:
       return (reader.readString(offset)) as P;
-    case 4:
+    case 3:
       return (reader.readLong(offset)) as P;
-    case 5:
+    case 4:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
 
-Id _postModelGetId(PostModel object) {
+Id _bookmarkModelGetId(BookmarkModel object) {
   return object.id;
 }
 
-List<IsarLinkBase<dynamic>> _postModelGetLinks(PostModel object) {
+List<IsarLinkBase<dynamic>> _bookmarkModelGetLinks(BookmarkModel object) {
   return [];
 }
 
-void _postModelAttach(IsarCollection<dynamic> col, Id id, PostModel object) {
+void _bookmarkModelAttach(
+  IsarCollection<dynamic> col,
+  Id id,
+  BookmarkModel object,
+) {
   object.id = id;
 }
 
-extension PostModelQueryWhereSort
-    on QueryBuilder<PostModel, PostModel, QWhere> {
-  QueryBuilder<PostModel, PostModel, QAfterWhere> anyId() {
+extension BookmarkModelQueryWhereSort
+    on QueryBuilder<BookmarkModel, BookmarkModel, QWhere> {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
   }
 }
 
-extension PostModelQueryWhere
-    on QueryBuilder<PostModel, PostModel, QWhereClause> {
-  QueryBuilder<PostModel, PostModel, QAfterWhereClause> idEqualTo(Id id) {
+extension BookmarkModelQueryWhere
+    on QueryBuilder<BookmarkModel, BookmarkModel, QWhereClause> {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterWhereClause> idEqualTo(
+    Id id,
+  ) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(lower: id, upper: id));
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterWhereClause> idNotEqualTo(Id id) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterWhereClause> idNotEqualTo(
+    Id id,
+  ) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -166,7 +165,7 @@ extension PostModelQueryWhere
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterWhereClause> idGreaterThan(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterWhereClause> idGreaterThan(
     Id id, {
     bool include = false,
   }) {
@@ -177,7 +176,7 @@ extension PostModelQueryWhere
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterWhereClause> idLessThan(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterWhereClause> idLessThan(
     Id id, {
     bool include = false,
   }) {
@@ -188,7 +187,7 @@ extension PostModelQueryWhere
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterWhereClause> idBetween(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -207,9 +206,9 @@ extension PostModelQueryWhere
   }
 }
 
-extension PostModelQueryFilter
-    on QueryBuilder<PostModel, PostModel, QFilterCondition> {
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> bodyEqualTo(
+extension BookmarkModelQueryFilter
+    on QueryBuilder<BookmarkModel, BookmarkModel, QFilterCondition> {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition> bodyEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -224,7 +223,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> bodyGreaterThan(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  bodyGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -241,7 +241,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> bodyLessThan(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  bodyLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -258,7 +259,7 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> bodyBetween(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition> bodyBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -279,10 +280,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> bodyStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  bodyStartsWith(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.startsWith(
@@ -294,10 +293,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> bodyEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  bodyEndsWith(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.endsWith(
@@ -309,10 +306,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> bodyContains(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  bodyContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.contains(
@@ -324,7 +319,7 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> bodyMatches(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition> bodyMatches(
     String pattern, {
     bool caseSensitive = true,
   }) {
@@ -339,7 +334,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> bodyIsEmpty() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  bodyIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.equalTo(property: r'body', value: ''),
@@ -347,7 +343,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> bodyIsNotEmpty() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  bodyIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.greaterThan(property: r'body', value: ''),
@@ -355,7 +352,7 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> idEqualTo(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition> idEqualTo(
     Id value,
   ) {
     return QueryBuilder.apply(this, (query) {
@@ -365,10 +362,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> idGreaterThan(
-    Id value, {
-    bool include = false,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  idGreaterThan(Id value, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.greaterThan(
@@ -380,7 +375,7 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> idLessThan(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition> idLessThan(
     Id value, {
     bool include = false,
   }) {
@@ -395,7 +390,7 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> idBetween(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition> idBetween(
     Id lower,
     Id upper, {
     bool includeLower = true,
@@ -414,37 +409,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition>
-  isBookmarkedIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(
-        const FilterCondition.isNull(property: r'isBookmarked'),
-      );
-    });
-  }
-
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition>
-  isBookmarkedIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(
-        const FilterCondition.isNotNull(property: r'isBookmarked'),
-      );
-    });
-  }
-
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> isBookmarkedEqualTo(
-    bool? value,
-  ) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(
-        FilterCondition.equalTo(property: r'isBookmarked', value: value),
-      );
-    });
-  }
-
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> postIdEqualTo(
-    int value,
-  ) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  postIdEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.equalTo(property: r'postId', value: value),
@@ -452,10 +418,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> postIdGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  postIdGreaterThan(int value, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.greaterThan(
@@ -467,10 +431,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> postIdLessThan(
-    int value, {
-    bool include = false,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  postIdLessThan(int value, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.lessThan(
@@ -482,7 +444,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> postIdBetween(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  postIdBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -501,10 +464,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> titleEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  titleEqualTo(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.equalTo(
@@ -516,7 +477,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> titleGreaterThan(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  titleGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -533,7 +495,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> titleLessThan(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  titleLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -550,7 +513,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> titleBetween(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  titleBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -571,10 +535,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> titleStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  titleStartsWith(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.startsWith(
@@ -586,10 +548,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> titleEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  titleEndsWith(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.endsWith(
@@ -601,10 +561,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> titleContains(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  titleContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.contains(
@@ -616,10 +574,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> titleMatches(
-    String pattern, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  titleMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.matches(
@@ -631,7 +587,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> titleIsEmpty() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  titleIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.equalTo(property: r'title', value: ''),
@@ -639,7 +596,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> titleIsNotEmpty() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  titleIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.greaterThan(property: r'title', value: ''),
@@ -647,9 +605,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> userIdEqualTo(
-    int value,
-  ) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  userIdEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.equalTo(property: r'userId', value: value),
@@ -657,10 +614,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> userIdGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  userIdGreaterThan(int value, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.greaterThan(
@@ -672,10 +627,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> userIdLessThan(
-    int value, {
-    bool include = false,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  userIdLessThan(int value, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.lessThan(
@@ -687,7 +640,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> userIdBetween(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  userIdBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -706,10 +660,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> usernameEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  usernameEqualTo(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.equalTo(
@@ -721,7 +673,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> usernameGreaterThan(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  usernameGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -738,7 +691,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> usernameLessThan(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  usernameLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -755,7 +709,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> usernameBetween(
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  usernameBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -776,10 +731,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> usernameStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  usernameStartsWith(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.startsWith(
@@ -791,10 +744,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> usernameEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  usernameEndsWith(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.endsWith(
@@ -806,10 +757,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> usernameContains(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  usernameContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.contains(
@@ -821,10 +770,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> usernameMatches(
-    String pattern, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  usernameMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.matches(
@@ -836,7 +783,8 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition> usernameIsEmpty() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
+  usernameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
         FilterCondition.equalTo(property: r'username', value: ''),
@@ -844,7 +792,7 @@ extension PostModelQueryFilter
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterFilterCondition>
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterFilterCondition>
   usernameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(
@@ -854,176 +802,155 @@ extension PostModelQueryFilter
   }
 }
 
-extension PostModelQueryObject
-    on QueryBuilder<PostModel, PostModel, QFilterCondition> {}
+extension BookmarkModelQueryObject
+    on QueryBuilder<BookmarkModel, BookmarkModel, QFilterCondition> {}
 
-extension PostModelQueryLinks
-    on QueryBuilder<PostModel, PostModel, QFilterCondition> {}
+extension BookmarkModelQueryLinks
+    on QueryBuilder<BookmarkModel, BookmarkModel, QFilterCondition> {}
 
-extension PostModelQuerySortBy on QueryBuilder<PostModel, PostModel, QSortBy> {
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> sortByBody() {
+extension BookmarkModelQuerySortBy
+    on QueryBuilder<BookmarkModel, BookmarkModel, QSortBy> {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> sortByBody() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'body', Sort.asc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> sortByBodyDesc() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> sortByBodyDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'body', Sort.desc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> sortByIsBookmarked() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isBookmarked', Sort.asc);
-    });
-  }
-
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> sortByIsBookmarkedDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isBookmarked', Sort.desc);
-    });
-  }
-
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> sortByPostId() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> sortByPostId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'postId', Sort.asc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> sortByPostIdDesc() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> sortByPostIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'postId', Sort.desc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> sortByTitle() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> sortByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> sortByTitleDesc() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> sortByTitleDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.desc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> sortByUserId() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> sortByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userId', Sort.asc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> sortByUserIdDesc() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> sortByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userId', Sort.desc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> sortByUsername() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> sortByUsername() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'username', Sort.asc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> sortByUsernameDesc() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy>
+  sortByUsernameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'username', Sort.desc);
     });
   }
 }
 
-extension PostModelQuerySortThenBy
-    on QueryBuilder<PostModel, PostModel, QSortThenBy> {
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByBody() {
+extension BookmarkModelQuerySortThenBy
+    on QueryBuilder<BookmarkModel, BookmarkModel, QSortThenBy> {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> thenByBody() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'body', Sort.asc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByBodyDesc() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> thenByBodyDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'body', Sort.desc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenById() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByIdDesc() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByIsBookmarked() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isBookmarked', Sort.asc);
-    });
-  }
-
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByIsBookmarkedDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isBookmarked', Sort.desc);
-    });
-  }
-
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByPostId() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> thenByPostId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'postId', Sort.asc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByPostIdDesc() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> thenByPostIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'postId', Sort.desc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByTitle() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> thenByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByTitleDesc() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> thenByTitleDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.desc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByUserId() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> thenByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userId', Sort.asc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByUserIdDesc() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> thenByUserIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'userId', Sort.desc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByUsername() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy> thenByUsername() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'username', Sort.asc);
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QAfterSortBy> thenByUsernameDesc() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QAfterSortBy>
+  thenByUsernameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'username', Sort.desc);
     });
   }
 }
 
-extension PostModelQueryWhereDistinct
-    on QueryBuilder<PostModel, PostModel, QDistinct> {
-  QueryBuilder<PostModel, PostModel, QDistinct> distinctByBody({
+extension BookmarkModelQueryWhereDistinct
+    on QueryBuilder<BookmarkModel, BookmarkModel, QDistinct> {
+  QueryBuilder<BookmarkModel, BookmarkModel, QDistinct> distinctByBody({
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1031,19 +958,13 @@ extension PostModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QDistinct> distinctByIsBookmarked() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'isBookmarked');
-    });
-  }
-
-  QueryBuilder<PostModel, PostModel, QDistinct> distinctByPostId() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QDistinct> distinctByPostId() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'postId');
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QDistinct> distinctByTitle({
+  QueryBuilder<BookmarkModel, BookmarkModel, QDistinct> distinctByTitle({
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1051,13 +972,13 @@ extension PostModelQueryWhereDistinct
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QDistinct> distinctByUserId() {
+  QueryBuilder<BookmarkModel, BookmarkModel, QDistinct> distinctByUserId() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'userId');
     });
   }
 
-  QueryBuilder<PostModel, PostModel, QDistinct> distinctByUsername({
+  QueryBuilder<BookmarkModel, BookmarkModel, QDistinct> distinctByUsername({
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1066,45 +987,39 @@ extension PostModelQueryWhereDistinct
   }
 }
 
-extension PostModelQueryProperty
-    on QueryBuilder<PostModel, PostModel, QQueryProperty> {
-  QueryBuilder<PostModel, int, QQueryOperations> idProperty() {
+extension BookmarkModelQueryProperty
+    on QueryBuilder<BookmarkModel, BookmarkModel, QQueryProperty> {
+  QueryBuilder<BookmarkModel, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<PostModel, String, QQueryOperations> bodyProperty() {
+  QueryBuilder<BookmarkModel, String, QQueryOperations> bodyProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'body');
     });
   }
 
-  QueryBuilder<PostModel, bool?, QQueryOperations> isBookmarkedProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'isBookmarked');
-    });
-  }
-
-  QueryBuilder<PostModel, int, QQueryOperations> postIdProperty() {
+  QueryBuilder<BookmarkModel, int, QQueryOperations> postIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'postId');
     });
   }
 
-  QueryBuilder<PostModel, String, QQueryOperations> titleProperty() {
+  QueryBuilder<BookmarkModel, String, QQueryOperations> titleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'title');
     });
   }
 
-  QueryBuilder<PostModel, int, QQueryOperations> userIdProperty() {
+  QueryBuilder<BookmarkModel, int, QQueryOperations> userIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'userId');
     });
   }
 
-  QueryBuilder<PostModel, String, QQueryOperations> usernameProperty() {
+  QueryBuilder<BookmarkModel, String, QQueryOperations> usernameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'username');
     });
