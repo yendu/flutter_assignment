@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppStateModel {
 
- int get index; bool get isLoading; String? get errorMessage;
+ int get index; bool get isLoading; String get searchedText; String? get errorMessage;
 /// Create a copy of AppStateModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $AppStateModelCopyWith<AppStateModel> get copyWith => _$AppStateModelCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppStateModel&&(identical(other.index, index) || other.index == index)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppStateModel&&(identical(other.index, index) || other.index == index)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.searchedText, searchedText) || other.searchedText == searchedText)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,index,isLoading,errorMessage);
+int get hashCode => Object.hash(runtimeType,index,isLoading,searchedText,errorMessage);
 
 @override
 String toString() {
-  return 'AppStateModel(index: $index, isLoading: $isLoading, errorMessage: $errorMessage)';
+  return 'AppStateModel(index: $index, isLoading: $isLoading, searchedText: $searchedText, errorMessage: $errorMessage)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $AppStateModelCopyWith<$Res>  {
   factory $AppStateModelCopyWith(AppStateModel value, $Res Function(AppStateModel) _then) = _$AppStateModelCopyWithImpl;
 @useResult
 $Res call({
- int index, bool isLoading, String? errorMessage
+ int index, bool isLoading, String searchedText, String? errorMessage
 });
 
 
@@ -62,11 +62,12 @@ class _$AppStateModelCopyWithImpl<$Res>
 
 /// Create a copy of AppStateModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? index = null,Object? isLoading = null,Object? errorMessage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? index = null,Object? isLoading = null,Object? searchedText = null,Object? errorMessage = freezed,}) {
   return _then(_self.copyWith(
 index: null == index ? _self.index : index // ignore: cast_nullable_to_non_nullable
 as int,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as bool,searchedText: null == searchedText ? _self.searchedText : searchedText // ignore: cast_nullable_to_non_nullable
+as String,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -152,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int index,  bool isLoading,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int index,  bool isLoading,  String searchedText,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppStateModel() when $default != null:
-return $default(_that.index,_that.isLoading,_that.errorMessage);case _:
+return $default(_that.index,_that.isLoading,_that.searchedText,_that.errorMessage);case _:
   return orElse();
 
 }
@@ -173,10 +174,10 @@ return $default(_that.index,_that.isLoading,_that.errorMessage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int index,  bool isLoading,  String? errorMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int index,  bool isLoading,  String searchedText,  String? errorMessage)  $default,) {final _that = this;
 switch (_that) {
 case _AppStateModel():
-return $default(_that.index,_that.isLoading,_that.errorMessage);case _:
+return $default(_that.index,_that.isLoading,_that.searchedText,_that.errorMessage);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -193,10 +194,10 @@ return $default(_that.index,_that.isLoading,_that.errorMessage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int index,  bool isLoading,  String? errorMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int index,  bool isLoading,  String searchedText,  String? errorMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _AppStateModel() when $default != null:
-return $default(_that.index,_that.isLoading,_that.errorMessage);case _:
+return $default(_that.index,_that.isLoading,_that.searchedText,_that.errorMessage);case _:
   return null;
 
 }
@@ -208,11 +209,12 @@ return $default(_that.index,_that.isLoading,_that.errorMessage);case _:
 
 
 class _AppStateModel implements AppStateModel {
-  const _AppStateModel({required this.index, required this.isLoading, this.errorMessage});
+  const _AppStateModel({required this.index, required this.isLoading, required this.searchedText, this.errorMessage});
   
 
 @override final  int index;
 @override final  bool isLoading;
+@override final  String searchedText;
 @override final  String? errorMessage;
 
 /// Create a copy of AppStateModel
@@ -225,16 +227,16 @@ _$AppStateModelCopyWith<_AppStateModel> get copyWith => __$AppStateModelCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppStateModel&&(identical(other.index, index) || other.index == index)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppStateModel&&(identical(other.index, index) || other.index == index)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.searchedText, searchedText) || other.searchedText == searchedText)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,index,isLoading,errorMessage);
+int get hashCode => Object.hash(runtimeType,index,isLoading,searchedText,errorMessage);
 
 @override
 String toString() {
-  return 'AppStateModel(index: $index, isLoading: $isLoading, errorMessage: $errorMessage)';
+  return 'AppStateModel(index: $index, isLoading: $isLoading, searchedText: $searchedText, errorMessage: $errorMessage)';
 }
 
 
@@ -245,7 +247,7 @@ abstract mixin class _$AppStateModelCopyWith<$Res> implements $AppStateModelCopy
   factory _$AppStateModelCopyWith(_AppStateModel value, $Res Function(_AppStateModel) _then) = __$AppStateModelCopyWithImpl;
 @override @useResult
 $Res call({
- int index, bool isLoading, String? errorMessage
+ int index, bool isLoading, String searchedText, String? errorMessage
 });
 
 
@@ -262,11 +264,12 @@ class __$AppStateModelCopyWithImpl<$Res>
 
 /// Create a copy of AppStateModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? index = null,Object? isLoading = null,Object? errorMessage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? index = null,Object? isLoading = null,Object? searchedText = null,Object? errorMessage = freezed,}) {
   return _then(_AppStateModel(
 index: null == index ? _self.index : index // ignore: cast_nullable_to_non_nullable
 as int,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as bool,searchedText: null == searchedText ? _self.searchedText : searchedText // ignore: cast_nullable_to_non_nullable
+as String,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

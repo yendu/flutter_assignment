@@ -15,7 +15,7 @@ class AppState extends _$AppState {
   AppStateModel build() {
     // baseRepository.fetchPosts();
     // BaseRepository.instance.fetchPosts();
-    return AppStateModel(index: 0, isLoading: true);
+    return AppStateModel(index: 0, isLoading: true, searchedText: '');
   }
 
   void updateIndex(int index) {
@@ -30,19 +30,36 @@ class AppState extends _$AppState {
     state = state.copyWith(errorMessage: message);
   }
 
+  void setSearchedMessage(String text) {
+    state = state.copyWith(searchedText: text);
+  }
+
   Future<void> triggerPostFetch(WidgetRef ref) async {
     await BaseRepository.instance.fetchPosts(ref);
   }
+
   Future<List<PostModel>> getPosts(WidgetRef ref) async {
     return await BaseRepository.instance.getPosts();
-  }Stream<List<BookmarkModel>> getBookmarks() async* {
-    yield*  BaseRepository.instance.getBookmarks();
-  }
-  Stream<List<PostModel>> getQueriedPosts() async* {
-    yield*  BaseRepository.instance.getQueriedPosts();
-  }
-  Future<void> toggleBookmark(WidgetRef ref, int postId, bool isBookmarked,bool isBookmarkPage) async {
-    await BaseRepository.instance.toggleBookmark(postId, isBookmarked,isBookmarkPage);
   }
 
+  Stream<List<BookmarkModel>> getBookmarks() async* {
+    yield* BaseRepository.instance.getBookmarks();
+  }
+
+  Stream<List<PostModel>> getQueriedPosts(String title) async* {
+    yield* BaseRepository.instance.getQueriedPosts(title);
+  }
+
+  Future<void> toggleBookmark(
+    WidgetRef ref,
+    int postId,
+    bool isBookmarked,
+    bool isBookmarkPage,
+  ) async {
+    await BaseRepository.instance.toggleBookmark(
+      postId,
+      isBookmarked,
+      isBookmarkPage,
+    );
+  }
 }

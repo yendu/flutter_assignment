@@ -7,6 +7,8 @@ abstract class AppStateModel with _$AppStateModel {
   const factory AppStateModel({
     required int index,
     required bool isLoading,
+    required String searchedText,
     String? errorMessage,
+
   }) = _AppStateModel;
 }

@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_assignment/core/model/post_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart' as http;
 import 'package:isar_community/isar.dart';
 
 import '../dependency_injection/dependency_injections.dart';
@@ -45,7 +43,6 @@ class BaseRepository {
 
       final isar = await _getIsar();
 
-      // Get existing bookmarks before deleting posts
       final existingPosts = await isar.postModels.where().findAll();
       final existingBookmarks = <int, bool>{};
       for (var existingPost in existingPosts) {
@@ -88,7 +85,7 @@ class BaseRepository {
     } catch (e) {
       ref
           .read(appStateProvider.notifier)
-          .setErrorMessage('Some error occurred: ${e.toString()}');
+          .setErrorMessage('Some error occurred');
     } finally {
       ref.read(appStateProvider.notifier).updateLoading(false);
     }
@@ -99,7 +96,6 @@ class BaseRepository {
       final isar = await _getIsar();
       return await isar.postModels.where().findAll();
     } catch (e) {
-      print(e);
       return [];
     }
   } Stream<List<BookmarkModel>> getBookmarks() async* {
@@ -109,17 +105,20 @@ class BaseRepository {
 
   }
 
-  Stream<List<PostModel>> getQueriedPosts() async* {
+  Stream<List<PostModel>> getQueriedPosts(String searchedTitle) async* {
     final isar = await _getIsar();
-    // Query<User> usersWithA = isar.users.filter()
-    //     .nameStartsWith('A')
-    //     .build();
-    //
-    // Stream<List<User>> queryChanged = usersWithA.watch(fireImmediately: true);
-    // queryChanged.listen((users) {
-    //   print('Users with A are: $users');
-    // });
-    yield* isar.postModels.where().watch(fireImmediately: true);
+    Query<PostModel> query;
+    
+    if (searchedTitle.isEmpty) {
+      query = isar.postModels.where().build();
+    } else {
+      query = isar.postModels
+          .filter()
+          .titleContains(searchedTitle, caseSensitive: false)
+          .build();
+    }
+    
+    yield* query.watch(fireImmediately: true);
   }
 
   Future<void> toggleBookmark(int postId, bool isBookmarked,bool isBookmarkPage) async {
