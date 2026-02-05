@@ -10,7 +10,7 @@ A simple Flutter application that fetches posts and users from a REST API, displ
 
 2.  **Clone and Navigate**:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/yendu/flutter_assignment
     cd flutter_assignment
     ```
 
